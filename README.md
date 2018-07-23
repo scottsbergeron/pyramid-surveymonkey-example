@@ -31,8 +31,15 @@ virtualenv is a tool to create isolated Python environments. This is useful for 
    1. With Command Prompt, navigate to the root of this project on the local machine and run `virtualenv pyenv`.
    1. Activate the virtual environment by running `pyenv\Scripts\activate` from the project root.
    1. `(pyenv)` should now be visible to the left of the command prompt.
+   1. All future instructions should be followed from within this activated virtual environment.
 
 #### What happened?
 We've just created a virtual environment folder named `pyenv` using the default version of Python we installed and hooked up to the `Path`. We've also activated the virtual environment, which means all future `python` & `pip` commands will be run in this isolated environment. So if we install a package using `pip` it'll be available to us when we use a Python shell, but it won't be available if we leave this environment or activate a different virtual environment where we haven't installed the package.
 
 **NOTE: To leave a virtual environment, simply run `deactivate` from within the virtual enviroment.**
+
+### Install Requirements
+In the Command Prompt, run `pip install -r requirements.txt`. This installs all the Python packages specified in the requirements.txt file.
+
+### Run Waitress Server
+In the Command Prompt, run `waitress-serve webapp:app`. This will start a server that serves our application. By default, waitress will serve requests on `localhost:8080`. Additional configuration options for waitress are available [here](https://docs.pylonsproject.org/projects/waitress/en/latest/runner.html).
