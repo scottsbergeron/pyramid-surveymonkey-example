@@ -18,7 +18,9 @@ We'll want to add the `python` & `pip` commands to our `Path` variable.
    1. Add the full path to the folder containing `python.exe` to the beginning of the `Path` variable. For example, mine was located at `C:\Users\Scott\AppData\Local\Programs\Python\Python37-32`.
    1. Also add the full path to the folder containing `pip.exe` to the beginning of the `Path` variable. For example, mine was located in the same path as `python.exe` under the `Scripts` folder.
    1. Confirm the changes.
-   1. Open up Command Prompt (`cmd` in Start menu) and type `python`, a Python shell should appear. **Note: Restarting the computer may be required for these changes to be recognized**
+   1. Open up Command Prompt (`cmd` in Start menu) and type `python`, a Python shell should appear. 
+
+**Note: Restarting the computer may be required for these changes to be recognized**
 
 ### Install virtualenv
 In the Command Prompt, run `pip install virtualenv`.
@@ -26,9 +28,9 @@ In the Command Prompt, run `pip install virtualenv`.
 #### What is virtualenv?
 virtualenv is a tool to create isolated Python environments. This is useful for keeping all the packages we install with `pip` in one project separated from the packages in another project. We can even use virtual environments to run different versions of Python from the one specified in the `Path`.
 
-### Create & activate a virtual environment
+### Create & Activate a Virtual Environment
    1. If you haven't already, clone this repo to the local machine.
-   1. With Command Prompt, navigate to the root of this project on the local machine and run `virtualenv pyenv`.
+   1. With Command Prompt, navigate to the root of this project and run `virtualenv pyenv`.
    1. Activate the virtual environment by running `pyenv\Scripts\activate` from the project root.
    1. `(pyenv)` should now be visible to the left of the command prompt.
    1. All future instructions should be followed from within this activated virtual environment.
@@ -39,7 +41,7 @@ We've just created a virtual environment folder named `pyenv` using the default 
 **NOTE: To leave a virtual environment, simply run `deactivate` from within the virtual enviroment.**
 
 ### Install Requirements
-In the Command Prompt, run `pip install -r requirements.txt`. This installs all the Python packages specified in the requirements.txt file.
+In the Command Prompt, run `pip install -e .`. This installs all the Python packages specified in the `setup.py` file.
 
 ### Run Waitress Server
-In the Command Prompt, run `waitress-serve webapp:app`. This will start a server that serves our application. By default, waitress will serve requests on `localhost:8080`. Additional configuration options for waitress are available [here](https://docs.pylonsproject.org/projects/waitress/en/latest/runner.html).
+In the Command Prompt, run `pserve development.ini --reload`. This will start a server that serves our application based on our configs in `development.ini`. We've specified that we want to use waitress as our server and serve our application on `localhost:8080`. The `--reload` command tells pserve to reload the application when it detects file changes. Additional configuration options for waitress are available [here](https://docs.pylonsproject.org/projects/waitress/en/latest/index.html).

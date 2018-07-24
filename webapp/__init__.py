@@ -1,8 +1,16 @@
 from pyramid.config import Configurator
 
 
-with Configurator() as config:
-    # Include controllers
-    config.include('webapp.controllers.home')
+def main(global_config, **settings):
+    """
+    Configurator docs: https://docs.pylonsproject.org/projects/pyramid/en/latest/api/config.html
+    """
+    with Configurator(settings=settings) as config:
+        config.include('pyramid_jinja2')
 
-    app = config.make_wsgi_app()
+        # Include views
+        config.include('webapp.views.example')
+        config.include('webapp.views.home')
+
+        config.scan('webapp.views')
+        return config.make_wsgi_app()
