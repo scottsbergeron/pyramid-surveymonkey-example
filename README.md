@@ -45,3 +45,23 @@ In the Command Prompt, run `pip install -e .`. This installs all the Python pack
 
 ### Run Waitress Server
 In the Command Prompt, run `pserve development.ini --reload`. This will start a server that serves our application based on our configs in `development.ini`. We've specified that we want to use waitress as our server and serve our application on `localhost:8080`. The `--reload` command tells pserve to reload the application when it detects file changes. Additional configuration options for waitress are available [here](https://docs.pylonsproject.org/projects/waitress/en/latest/index.html).
+
+**At this point, if you visit `localhost:8080` you should be greeted with a home page with a list of example pages. The SurveyMonkey API example won't work yet if you click that link. Follow the instructions below to make it work.**
+
+#### Setting up the SurveyMonkey API
+There's two ways to use SurveyMonkey's API
+
+1. For accessing your own SurveyMonkey account programmatically
+1. For building an app that any SurveyMonkey account holder can use
+
+For this example we're going to be focusing on option 1.
+
+Visit the [developer portal](https://developer.surveymonkey.com/).
+
+   - Click 'Get Started' and then either sign into your existing SurveyMonkey account or create a new one.
+   - Click 'Create New App', give it a nickname and choose either public or private. Keep in mind that public is required if you want to make use of OAuth later on.
+   - Click on the 'SETTINGS' tab at the top of the page.
+   - At the bottom of the SETTINGS page is the Scopes section. For now, enable 'View Surveys' by clicking on it. You can read more about scopes [here](https://developer.surveymonkey.com/api/v3/#scopes).
+   - Locate your 'Access Token' and copy it. Replace '\<your api key goes here\>' in `development.ini`with that value.
+   - If you haven't created a survey yet in this account, go [here](https://www.surveymonkey.com) and create at least one.
+   - Go to `localhost:8080/example/sm_api`. You should see a list of titles that match the survey(s) in your account.
