@@ -3,7 +3,9 @@ A boiler plate web app that connects to the SurveyMonkey v3 API
 
 ## Install Python 3.7 & pip
 ### Windows Instructions
-Python 3.7 can be installed along with pip [here](https://www.python.org/ftp/python/3.7.0/python-3.7.0.exe).
+Python 3.7 can be installed along with pip with one of the links below.
+- [Windows x86](https://www.python.org/ftp/python/3.7.0/python-3.7.0.exe).
+- [Windows x86-64](https://www.python.org/ftp/python/3.7.0/python-3.7.0-amd64.exe).
 
 We'll want to add the `python` & `pip` commands to our `Path` variable.
 
@@ -12,9 +14,18 @@ We'll want to add the `python` & `pip` commands to our `Path` variable.
    1. Add the full path to the folder containing `python.exe` to the beginning of the `Path` variable. For example, mine was located at `C:\Users\Scott\AppData\Local\Programs\Python\Python37-32`.
    1. Also add the full path to the folder containing `pip.exe` to the beginning of the `Path` variable. For example, mine was located in the same path as `python.exe` under the `Scripts` folder.
    1. Confirm the changes.
-   1. Open up Command Prompt (`cmd` in Start menu) and type `python`, a Python shell should appear.
+   1. Open up Command Prompt (`cmd` in Start menu) and type `python --version`, you should see `Python 3.7.0`.
 
 **Note: Restarting the computer may be required for these changes to be recognized**
+
+### Mac Instructions
+Python 3.7 can be installed along with pip with one of the links below.
+- [OS X 10.9 and up](https://www.python.org/ftp/python/3.7.0/python-3.7.0-macosx10.9.pkg).
+- [OS X 10.6 and up](https://www.python.org/ftp/python/3.7.0/python-3.7.0-macosx10.6.pkg).
+
+Open up Terminal and type `python3 --version`, you should see `Python 3.7.0`.
+
+**Note: Mac OS usually comes with Python 2.7 preinstalled, so make sure to use the command `python3` to reference this version**
 
 ### What is Python 3.7?
 Python is the programming language we're using with this example codebase. Python is an interpreted language, which means we need to install an interpreter to run our Python scripts. More information [here](https://www.python.org/doc/essays/blurb/).
@@ -24,7 +35,10 @@ pip is a package management system used to install and manage software packages 
 
 ## Install virtualenv
 ### Windows Instructions
-In the Command Prompt, run `pip install virtualenv`.
+In Command Prompt, run `pip install virtualenv`.
+
+### Mac Instructions
+In Terminal, run `pip3 install virtualenv`.
 
 ### What is virtualenv?
 virtualenv is a tool to create isolated Python environments. This is useful for keeping all the packages we install with `pip` in one project separated from the packages in another project. We can even use virtual environments to run different versions of Python from the one specified in the `Path`.
@@ -36,19 +50,27 @@ virtualenv is a tool to create isolated Python environments. This is useful for 
    1. Activate the virtual environment by running `pyenv\Scripts\activate` from the project root.
    1. `(pyenv)` should now be visible to the left of the command prompt.
    1. All future instructions should be followed from within this activated virtual environment.
+   
+### Mac Instructions
+   1. If you haven't already, clone this repo to the local machine.
+   1. With Terminal, navigate to the root of this project.
+   1. Run `virtualenv --python==python3.7 pyenv`.
+      1. If your terminal spits out something like `virtualenv: command not found` then in another tab locate where `virtualenv` is located. For example mine was located at `/Library/Frameworks/Python.framework/Versions/3.7/bin`.
+      1. Run `/PATH/FROM/ABOVE/virtualenv --python==python3.7 pyenv`.
+   1. Activate the virtual environment by running `source pyenv/bin/activate` from the project root.
+   1. `(pyenv)` should now be visible to the left of the command prompt.
+   1. All future instructions should be followed from within this activated virtual environment.
 
 ### What happened?
-We've just created a virtual environment folder named `pyenv` using the default version of Python we installed and hooked up to the `Path`. We've also activated the virtual environment, which means all future `python` & `pip` commands will be run in this isolated environment. So if we install a package using `pip` it'll be available to us when we use a Python shell, but it won't be available if we leave this environment or activate a different virtual environment where we haven't installed the package.
+We've just created a virtual environment folder named `pyenv`. We've also activated the virtual environment, which means all future `python` & `pip` commands will be run in this isolated environment. So if we install a package using `pip` it'll be available to us when we use a Python shell, but it won't be available if we leave this environment or activate a different virtual environment where we haven't installed the package.
 
 **NOTE: To leave a virtual environment, simply run `deactivate` from within the virtual enviroment.**
 
 ## Install Requirements
-### Windows Instructions
-In the Command Prompt, run `pip install -e .`. This installs all the Python packages specified in the `setup.py` file.
+Run `pip install -e .`. This installs all the Python packages specified in the `setup.py` file.
 
 ## Run Waitress Server
-### Windows Instructions
-In the Command Prompt, run `pserve development.ini --reload`. This will start a server that serves our application based on our configs in `development.ini`. We've specified that we want to use waitress as our server and serve our application on `localhost:8080`. The `--reload` command tells pserve to reload the application when it detects file changes. Additional configuration options for waitress are available [here](https://docs.pylonsproject.org/projects/waitress/en/latest/index.html).
+Run `pserve development.ini --reload`. This will start a server that serves our application based on our configs in `development.ini`. We've specified that we want to use waitress as our server and serve our application on `localhost:8080`. The `--reload` command tells pserve to reload the application when it detects file changes. Additional configuration options for waitress are available [here](https://docs.pylonsproject.org/projects/waitress/en/latest/index.html).
 
 **At this point, if you visit `localhost:8080` you should be greeted with a home page with a list of example pages. The SurveyMonkey API example won't work yet if you click that link. Follow the instructions below to make it work.**
 
