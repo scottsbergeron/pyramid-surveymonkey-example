@@ -3,7 +3,7 @@ from setuptools import setup
 requires = [
     'pyramid==1.9.2',
     'pyramid_jinja2==2.7',
-    'requests==2.20.0',
+    'requests==2.31.0',
     'waitress==1.4.3'
 ]
 
